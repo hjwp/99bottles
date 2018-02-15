@@ -35,10 +35,8 @@ class Bottles:
 def verse(n):
     bottles = Bottles(n)
     return (
-        f"{bottles} of beer on the wall, ".capitalize() +
-        f"{bottles} of beer.\n" +
-        f"{bottles.action}, ".capitalize() +
-        f"{bottles.successor} of beer on the wall.\n"
+        f"{bottles} of beer on the wall, {bottles} of beer.\n".capitalize() +
+        f"{bottles.action}, {bottles.successor} of beer on the wall.\n".capitalize()
     )
 
 def sing():
