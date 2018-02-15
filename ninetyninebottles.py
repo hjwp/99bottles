@@ -6,8 +6,7 @@ class Bottles:
     def __init__(self, number):
         self.number = number
 
-    @property
-    def description(self):
+    def __str__(self):
         if self.number == 0:
             return 'no more bottles'
         if self.number == 1:
@@ -17,8 +16,8 @@ class Bottles:
     @property
     def action(self):
         if self.number == 0:
-            return 'Go to the store and buy some more'
-        return f'Take {self.pronoun} down and pass it around'
+            return 'go to the store and buy some more'
+        return f'take {self.pronoun} down and pass it around'
 
     @property
     def pronoun(self):
@@ -36,10 +35,10 @@ class Bottles:
 def verse(n):
     bottles = Bottles(n)
     return (
-        f"{bottles.description.capitalize()} of beer on the wall, "
-        f"{bottles.description} of beer.\n"
-        f"{bottles.action}, "
-        f"{bottles.successor.description} of beer on the wall.\n"
+        f"{bottles} of beer on the wall, ".capitalize() +
+        f"{bottles} of beer.\n" +
+        f"{bottles.action}, ".capitalize() +
+        f"{bottles.successor} of beer on the wall.\n"
     )
 
 def sing():
