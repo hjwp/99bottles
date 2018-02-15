@@ -7,33 +7,59 @@ class Bottles:
         self.number = number
 
     def __str__(self):
-        if self.number == 0:
-            return 'no more bottles'
-        if self.number == 1:
-            return '1 bottle'
         return f'{self.number} bottles'
 
     @property
     def action(self):
-        if self.number == 0:
-            return 'go to the store and buy some more'
         return f'take {self.pronoun} down and pass it around'
 
     @property
     def pronoun(self):
-        if self.number == 1:
-            return 'it'
         return 'one'
 
     @property
     def successor(self):
-        if self.number == 0:
-            return Bottles(99)
-        return Bottles(self.number - 1)
+        return Bottles.for_number(self.number - 1)
+
+    @staticmethod
+    def for_number(number):
+        if number == 0:
+            return NoBottles()
+        if number == 1:
+            return OneBottle()
+        return Bottles(number)
+
+
+class NoBottles(Bottles):
+    def __init__(self):
+        self.number = 0
+
+    def __str__(self):
+        return 'no more bottles'
+
+    @property
+    def action(self):
+        return 'go to the store and buy some more'
+
+    @property
+    def successor(self):
+        return Bottles.for_number(99)
+
+
+class OneBottle(Bottles):
+    def __init__(self):
+        self.number = 1
+
+    def __str__(self):
+        return '1 bottle'
+
+    @property
+    def pronoun(self):
+        return 'it'
 
 
 def verse(n):
-    bottles = Bottles(n)
+    bottles = Bottles.for_number(n)
     return (
         f"{bottles} of beer on the wall, {bottles} of beer.\n".capitalize() +
         f"{bottles.action}, {bottles.successor} of beer on the wall.\n".capitalize()
