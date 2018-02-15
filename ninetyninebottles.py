@@ -1,31 +1,45 @@
-def verse(n):
-    if n == 0:
-        return (
-            "No more bottles of beer on the wall, "
-            "no more bottles of beer.\n"
-            "Go to the store and buy some more, "
-            "99 bottles of beer on the wall.\n"
-        )
-    if n == 1:
-        return (
-            "1 bottle of beer on the wall, "
-            "1 bottle of beer.\n"
-            "Take it down and pass it around, "
-            "no more bottles of beer on the wall.\n"
-        )
-    if n == 2:
-        return (
-            "2 bottles of beer on the wall, "
-            "2 bottles of beer.\n"
-            "Take one down and pass it around, "
-            "1 bottle of beer on the wall.\n"
-        )
+class Bottles:
+    """
+    Represents a number of bottles (maybe zero),
+    how to talk about them, and how to get the next number of bottles
+    """
+    def __init__(self, number):
+        self.number = number
 
+    @property
+    def description(self):
+        if self.number == 0:
+            return 'no more bottles'
+        if self.number == 1:
+            return '1 bottle'
+        return f'{self.number} bottles'
+
+    @property
+    def action(self):
+        if self.number == 0:
+            return 'Go to the store and buy some more'
+        return f'Take {self.pronoun} down and pass it around'
+
+    @property
+    def pronoun(self):
+        if self.number == 1:
+            return 'it'
+        return 'one'
+
+    @property
+    def successor(self):
+        if self.number == 0:
+            return Bottles(99)
+        return Bottles(self.number - 1)
+
+
+def verse(n):
+    bottles = Bottles(n)
     return (
-        f"{n} bottles of beer on the wall, "
-        f"{n} bottles of beer.\n"
-        "Take one down and pass it around, "
-        f"{n-1} bottles of beer on the wall.\n"
+        f"{bottles.description.capitalize()} of beer on the wall, "
+        f"{bottles.description} of beer.\n"
+        f"{bottles.action}, "
+        f"{bottles.successor.description} of beer on the wall.\n"
     )
 
 def sing():
