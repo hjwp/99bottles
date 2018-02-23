@@ -1,3 +1,9 @@
+def container(number):
+    if number == 1:
+        return "bottle"
+    return "bottles"
+
+
 def verse(number):
     if number == 0:
         return (
@@ -27,6 +33,7 @@ def verse(number):
         "Take one down and pass it around, "
         f"{number - 1} bottles of beer on the wall.\n"
     )
+
 
 def sing():
     return '\n'.join(verse(n) for n in range(99, -1, -1))
