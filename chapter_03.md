@@ -349,3 +349,18 @@ def container():
 
 * time taken to this point: 65 mins
 
+
+## unnamed listing
+
+```python
+def container(number):
+    return "bottles"
+```
+
+## expected output
+
+```
+TypeError: container() missing 1 required positional argument: 'number'
+```
+
+
