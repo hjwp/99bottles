@@ -418,3 +418,24 @@ return "bottle" if number == 1 else "bottles"
 
 
 ## Listing 3.15: Passing an Argument to Container
+
+```python
+def container(number="FIXME"):
+    if number == 1:
+        return "bottle"
+    return "bottles"
+
+
+def verse(number):
+    #...
+    if number == 2:
+        #...
+            f"{number - 1} bottle of beer on the wall.\n"
+        )
+
+    return (
+        #...
+        f"{number - 1} {container(number - 1)} of beer on the wall.\n"
+    )
+```
+
