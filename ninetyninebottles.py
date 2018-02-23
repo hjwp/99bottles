@@ -1,7 +1,5 @@
 def container(number="FIXME"):
-    if number == 1:
-        return "bottle"
-    return "bottles"
+    return "bottle" if number == 1 else "bottles"
 
 
 def verse(number):

@@ -408,3 +408,4 @@ def container(number="FIXME"):
 ```
 
 
+## unnamed listing: ternary alternative
