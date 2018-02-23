@@ -375,5 +375,16 @@ f"{number - 1} {container(number - 1)} of beer on the wall.\n"
 
 ```
 TypeError: container() takes 0 positional arguments but 1 was given
+```
+
+
+
+## Listing 3.13: Container With Defaulted Argument
+
+```python
+def container(number='FIXME'):
+    return "bottles"
+```
+
 
 
