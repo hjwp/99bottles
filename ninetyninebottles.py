@@ -1,7 +1,5 @@
-def container(number):
-    if number == 1:
-        return "bottle"
-    return "bottles"
+def container():
+    pass
 
 
 def verse(number):
