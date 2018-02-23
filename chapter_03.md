@@ -503,3 +503,5 @@ def verse(number):
     )
 ```
 
+time taken to this point: 2 hrs 10 mins.
+
