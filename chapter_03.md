@@ -409,3 +409,12 @@ def container(number="FIXME"):
 
 
 ## unnamed listing: ternary alternative
+
+```python
+return "bottle" if number == 1 else "bottles"
+```
+* test modifications
+- case statement
+
+
+## Listing 3.15: Passing an Argument to Container
