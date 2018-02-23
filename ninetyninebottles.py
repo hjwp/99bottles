@@ -1,4 +1,6 @@
-def container(number='FIXME'):
+def container(number="FIXME"):
+    if number == 1:
+        return "bottle"
     return "bottles"
 
 

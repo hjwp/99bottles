@@ -387,4 +387,24 @@ def container(number='FIXME'):
 ```
 
 
+* Text modification:
+
+- The above code takes an argument named number , which it defaults to the symbol :FIXME .
++ The above code takes an argument named number , which it defaults to the string "FIXME'.
+
+- Setting it to a value like :FIXME will help you remember to do this clean-up.
++ Setting it to a value like "FIXME" will help you remember to do this clean-up.
+
+(also some more method -> functions)
+
+
+## Listing 3.14: Container With Conditional
+
+```python
+def container(number="FIXME"):
+    if number == 1:
+        return "bottle"
+    return "bottles"
+```
+
 
