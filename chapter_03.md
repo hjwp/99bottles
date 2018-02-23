@@ -347,8 +347,6 @@ def container():
 
 * comment: if I have to change too many more of these else branches into default branches i'm going to give up on my pythonic convention!!
 
-* time taken to this point: 65 mins
-
 
 ## unnamed listing: premature argument in function defn
 
@@ -502,6 +500,4 @@ def verse(number):
         f"{number - 1} {container(number - 1)} of beer on the wall.\n"
     )
 ```
-
-time taken to this point: 2 hrs 10 mins.
 
