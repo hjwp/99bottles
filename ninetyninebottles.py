@@ -24,7 +24,7 @@ def verse(number):
             f"{number} bottles of beer on the wall, "
             f"{number} bottles of beer.\n"
             "Take one down and pass it around, "
-            f"{number - 1} bottle of beer on the wall.\n"
+            f"{number - 1} {container(number - 1)} of beer on the wall.\n"
         )
 
     return (

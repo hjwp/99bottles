@@ -439,3 +439,35 @@ def verse(number):
     )
 ```
 
+* text modifications:
+
+- references to "the false branch" should be "the default branch"?
+
+
+## Listing 3.16: 2 and Else Cases Identical, Number Default Exists
+
+```python
+def container(number="FIXME"):
+    if number == 1:
+        return "bottle"
+    return "bottles"
+
+
+def verse(number):
+    #...
+    if number == 2:
+        return (
+            f"{number} bottles of beer on the wall, "
+            f"{number} bottles of beer.\n"
+            "Take one down and pass it around, "
+            f"{number - 1} {container(number - 1)} of beer on the wall.\n"
+        )
+
+    return (
+        f"{number} bottles of beer on the wall, "
+        f"{number} bottles of beer.\n"
+        "Take one down and pass it around, "
+        f"{number - 1} {container(number - 1)} of beer on the wall.\n"
+    )
+```
+
