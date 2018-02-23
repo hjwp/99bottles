@@ -350,17 +350,30 @@ def container():
 * time taken to this point: 65 mins
 
 
-## unnamed listing
+## unnamed listing: premature argument in function defn
 
 ```python
 def container(number):
     return "bottles"
 ```
 
-## expected output
+* expected error:
+
 
 ```
 TypeError: container() missing 1 required positional argument: 'number'
 ```
+
+
+## unnamed listng: premature argument in function call
+
+```python
+f"{number - 1} {container(number - 1)} of beer on the wall.\n"
+```
+
+* expected error:
+
+```
+TypeError: container() takes 0 positional arguments but 1 was given
 
 
