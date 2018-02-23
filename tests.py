@@ -60,6 +60,26 @@ def test_a_couple_verses():
     )
     assert '\n'.join([verse(99), verse(98)]) == expected
 
+
+def test_verse_6():
+    expected = (
+        "1 six-pack of beer on the wall, "
+        "1 six-pack of beer.\n"
+        "Take one down and pass it around, "
+        "5 bottles of beer on the wall.\n"
+    )
+    assert verse(6) == expected
+
+
+def test_verse_7():
+    expected = (
+        "7 bottles of beer on the wall, "
+        "7 bottles of beer.\n"
+        "Take one down and pass it around, "
+        "1 six-pack of beer on the wall.\n"
+    )
+    assert verse(7) == expected
+
 def test_a_few_verses():
     expected = (
         "2 bottles of beer on the wall, "
@@ -359,9 +379,9 @@ def test_the_whole_song():
         Take one down and pass it around, 7 bottles of beer on the wall.
 
         7 bottles of beer on the wall, 7 bottles of beer.
-        Take one down and pass it around, 6 bottles of beer on the wall.
+        Take one down and pass it around, 1 six-pack of beer on the wall.
 
-        6 bottles of beer on the wall, 6 bottles of beer.
+        1 six-pack of beer on the wall, 1 six-pack of beer.
         Take one down and pass it around, 5 bottles of beer on the wall.
 
         5 bottles of beer on the wall, 5 bottles of beer.
