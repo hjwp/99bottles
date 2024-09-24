@@ -9,16 +9,21 @@ def quantity(n: int) -> str:
 def verse(n: int) -> str:
     match n:
         case 0:
-            return (
-                f"No more {container(n)} of beer on the wall, no more {container(n)} of beer.\n"
-                f"Go to the store and buy some more, 99 {container(99)} of beer on the wall.\n"
-            )
+            next_n = 99
+            action = "Go to the store and buy some more"
         case _:
+            next_n = n - 1
             pronoun = "it" if n == 1 else "one"
-            return (
-                f"{n} {container(n)} of beer on the wall, {n} {container(n)} of beer.\n"
-                f"Take {pronoun} down and pass it around, {quantity(n-1)} {container(n-1)} of beer on the wall.\n"
-            )
+            action = f"Take {pronoun} down and pass it around"
+
+    return (
+        f"{quantity(n).capitalize()} {container(n)} of beer on the wall, "
+        f"{quantity(n)} {container(n)} of beer."
+        "\n"
+        f"{action}, "
+        f"{quantity(next_n)} {container(next_n)} of beer on the wall."
+        "\n"
+    )
 
 
 def sing() -> str:
