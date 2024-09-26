@@ -19,6 +19,8 @@ def _bottles_for(n: int) -> Bottles:
             )
         case 1:
             return Bottles("bottle", "1", "Take it down and pass it around", "it")
+        case 6:
+            return Bottles("six-pack", "one", "Take one down and pass it around", "one")
         case _:
             return Bottles("bottles", str(n), "Take one down and pass it around", "one")
 

@@ -362,9 +362,9 @@ def test_the_whole_song():
         Take one down and pass it around, 7 bottles of beer on the wall.
 
         7 bottles of beer on the wall, 7 bottles of beer.
-        Take one down and pass it around, 6 bottles of beer on the wall.
+        Take one down and pass it around, one six-pack of beer on the wall.
 
-        6 bottles of beer on the wall, 6 bottles of beer.
+        One six-pack of beer on the wall, one six-pack of beer.
         Take one down and pass it around, 5 bottles of beer on the wall.
 
         5 bottles of beer on the wall, 5 bottles of beer.
