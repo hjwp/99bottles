@@ -5,35 +5,36 @@ import itertools
 
 @dataclass
 class Bottles:
-    container: str
-    quantity: str
+    name: str
     action: str
-    pronoun: str
+
+    def __str__(self) -> str:
+        return f"{self.name}"
 
 
 def _bottles_for(n: int) -> Bottles:
     match n:
         case 0:
-            return Bottles(
-                "bottles", "no more", "Go to the store and buy some more", ""
-            )
+            return Bottles("no more bottles", "go to the store and buy some more")
         case 1:
-            return Bottles("bottle", "1", "Take it down and pass it around", "it")
+            return Bottles("1 bottle", "take it down and pass it around")
         case 6:
-            return Bottles("six-pack", "one", "Take one down and pass it around", "one")
+            return Bottles("one six-pack", "take one down and pass it around")
         case _:
-            return Bottles("bottles", str(n), "Take one down and pass it around", "one")
+            return Bottles(f"{n} bottles", "take one down and pass it around")
 
 
 def verse(n: int, next_n: int = -999) -> str:
     bottles, next_bottles = _bottles_for(n), _bottles_for(next_n)
-    return (
-        f"{bottles.quantity.capitalize()} {bottles.container} of beer on the wall, "
-        f"{bottles.quantity} {bottles.container} of beer."
-        "\n"
-        f"{bottles.action}, "
-        f"{next_bottles.quantity} {next_bottles.container} of beer on the wall."
-        "\n"
+    return "".join(
+        [
+            f"{bottles} of beer on the wall, ".capitalize(),
+            f"{bottles} of beer.",
+            "\n",
+            f"{bottles.action}, ".capitalize(),
+            f"{next_bottles} of beer on the wall.",
+            "\n",
+        ]
     )
 
 
