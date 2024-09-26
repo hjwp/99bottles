@@ -1,30 +1,46 @@
-def container(n: int) -> str:
-    return "bottle" if n == 1 else "bottles"
+from dataclasses import dataclass
+from typing import Iterable
+import itertools
 
 
-def quantity(n: int) -> str:
-    return "no more" if n == 0 else str(n)
+@dataclass
+class Bottles:
+    container: str
+    quantity: str
+    action: str
+    pronoun: str
 
 
-def verse(n: int) -> str:
+def _bottles_for(n: int) -> Bottles:
     match n:
         case 0:
-            next_n = 99
-            action = "Go to the store and buy some more"
+            return Bottles(
+                "bottles", "no more", "Go to the store and buy some more", ""
+            )
+        case 1:
+            return Bottles("bottle", "1", "Take it down and pass it around", "it")
         case _:
-            next_n = n - 1
-            pronoun = "it" if n == 1 else "one"
-            action = f"Take {pronoun} down and pass it around"
+            return Bottles("bottles", str(n), "Take one down and pass it around", "one")
 
+
+def verse(n: int, next_n: int = -999) -> str:
+    bottles, next_bottles = _bottles_for(n), _bottles_for(next_n)
     return (
-        f"{quantity(n).capitalize()} {container(n)} of beer on the wall, "
-        f"{quantity(n)} {container(n)} of beer."
+        f"{bottles.quantity.capitalize()} {bottles.container} of beer on the wall, "
+        f"{bottles.quantity} {bottles.container} of beer."
         "\n"
-        f"{action}, "
-        f"{quantity(next_n)} {container(next_n)} of beer on the wall."
+        f"{bottles.action}, "
+        f"{next_bottles.quantity} {next_bottles.container} of beer on the wall."
         "\n"
     )
 
 
+def _sing() -> Iterable[str]:
+    nums = itertools.cycle(range(99, -1, -1))
+    nums2 = itertools.cycle(range(99, -1, -1))
+    for n, next_n in zip(nums, nums2):
+        yield verse(n, next_n=next_n)
+
+
 def sing() -> str:
-    return "\n".join(verse(n) for n in range(99, -1, -1))
+    return "\n".join(_sing())
