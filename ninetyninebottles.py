@@ -35,12 +35,15 @@ def verse(n: int, next_n: int = -999) -> str:
     )
 
 
-def _sing() -> Iterable[str]:
-    nums = itertools.cycle(range(99, -1, -1))
-    nums2 = itertools.cycle(range(99, -1, -1))
+def _sing(start: int) -> Iterable[str]:
+    nums = itertools.cycle(range(start, -1, -1))
+    nums2 = itertools.cycle(range(start, -1, -1))
+    next(nums2)
     for n, next_n in zip(nums, nums2):
-        yield verse(n, next_n=next_n)
+        yield verse(n, next_n)
+        if next_n == start:
+            return
 
 
 def sing() -> str:
-    return "\n".join(_sing())
+    return "\n".join(_sing(99))
