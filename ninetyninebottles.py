@@ -1,69 +1,52 @@
+from dataclasses import dataclass
+from typing import Iterable
+import itertools
+
+
+@dataclass
 class Bottles:
-    """
-    Represents a number of bottles (maybe zero),
-    how to talk about them, and how to get the next number of bottles
-    """
-    def __init__(self, number):
-        self.number = number
+    name: str
+    action: str
 
-    def __str__(self):
-        return f'{self.number} bottles'
-
-    @property
-    def action(self):
-        return f'take {self.pronoun} down and pass it around'
-
-    @property
-    def pronoun(self):
-        return 'one'
-
-    @property
-    def successor(self):
-        return Bottles.for_number(self.number - 1)
-
-    @staticmethod
-    def for_number(number):
-        if number == 0:
-            return NoBottles()
-        if number == 1:
-            return OneBottle()
-        return Bottles(number)
+    def __str__(self) -> str:
+        return f"{self.name}"
 
 
-class NoBottles(Bottles):
-    def __init__(self):
-        self.number = 0
-
-    def __str__(self):
-        return 'no more bottles'
-
-    @property
-    def action(self):
-        return 'go to the store and buy some more'
-
-    @property
-    def successor(self):
-        return Bottles.for_number(99)
+def _bottles_for(n: int) -> Bottles:
+    match n:
+        case 0:
+            return Bottles("no more bottles", "go to the store and buy some more")
+        case 1:
+            return Bottles("1 bottle", "take it down and pass it around")
+        case 6:
+            return Bottles("one six-pack", "take one down and pass it around")
+        case _:
+            return Bottles(f"{n} bottles", "take one down and pass it around")
 
 
-class OneBottle(Bottles):
-    def __init__(self):
-        self.number = 1
-
-    def __str__(self):
-        return '1 bottle'
-
-    @property
-    def pronoun(self):
-        return 'it'
-
-
-def verse(n):
-    bottles = Bottles.for_number(n)
-    return (
-        f"{bottles} of beer on the wall, {bottles} of beer.\n".capitalize() +
-        f"{bottles.action}, {bottles.successor} of beer on the wall.\n".capitalize()
+def verse(n: int, next_n: int = -999) -> str:
+    bottles, next_bottles = _bottles_for(n), _bottles_for(next_n)
+    return "".join(
+        [
+            f"{bottles} of beer on the wall, ".capitalize(),
+            f"{bottles} of beer.",
+            "\n",
+            f"{bottles.action}, ".capitalize(),
+            f"{next_bottles} of beer on the wall.",
+            "\n",
+        ]
     )
 
-def sing():
-    return '\n'.join(verse(n) for n in range(99, -1, -1))
+
+def _sing(start: int) -> Iterable[str]:
+    nums = itertools.cycle(range(start, -1, -1))
+    nums2 = itertools.cycle(range(start, -1, -1))
+    next(nums2)
+    for n, next_n in zip(nums, nums2):
+        yield verse(n, next_n)
+        if next_n == start:
+            return
+
+
+def sing() -> str:
+    return "\n".join(_sing(99))
