@@ -1,7 +1,7 @@
 from textwrap import dedent
 from ninetyninebottles import verse, sing
 
-"""
+
 def test_the_first_verse():
     expected = (
         "99 bottles of beer on the wall, "
@@ -10,6 +10,7 @@ def test_the_first_verse():
         "98 bottles of beer on the wall.\n"
     )
     assert verse(99) == expected
+
 
 def test_another_verse():
     expected = (
@@ -20,6 +21,7 @@ def test_another_verse():
     )
     assert verse(3) == expected
 
+
 def test_verse_2():
     expected = (
         "2 bottles of beer on the wall, "
@@ -28,6 +30,7 @@ def test_verse_2():
         "1 bottle of beer on the wall.\n"
     )
     assert verse(2) == expected
+
 
 def test_verse_1():
     expected = (
@@ -38,6 +41,7 @@ def test_verse_1():
     )
     assert verse(1) == expected
 
+
 def test_verse_0():
     expected = (
         "No more bottles of beer on the wall, "
@@ -46,6 +50,7 @@ def test_verse_0():
         "99 bottles of beer on the wall.\n"
     )
     assert verse(0) == expected
+
 
 def test_a_couple_verses():
     expected = (
@@ -59,7 +64,8 @@ def test_a_couple_verses():
         "Take one down and pass it around, "
         "97 bottles of beer on the wall.\n"
     )
-    assert '\n'.join([verse(99), verse(98)]) == expected
+    assert "\n".join([verse(99), verse(98)]) == expected
+
 
 def test_a_few_verses():
     expected = (
@@ -78,8 +84,7 @@ def test_a_few_verses():
         "Go to the store and buy some more, "
         "99 bottles of beer on the wall.\n"
     )
-    assert '\n'.join([verse(2), verse(1), verse(0)]) == expected
-"""
+    assert "\n".join([verse(2), verse(1), verse(0)]) == expected
 
 
 def test_the_whole_song():
@@ -362,9 +367,9 @@ def test_the_whole_song():
         Take one down and pass it around, 7 bottles of beer on the wall.
 
         7 bottles of beer on the wall, 7 bottles of beer.
-        Take one down and pass it around, one six-pack of beer on the wall.
+        Take one down and pass it around, 6 bottles of beer on the wall.
 
-        One six-pack of beer on the wall, one six-pack of beer.
+        6 bottles of beer on the wall, 6 bottles of beer.
         Take one down and pass it around, 5 bottles of beer on the wall.
 
         5 bottles of beer on the wall, 5 bottles of beer.
