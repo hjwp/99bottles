@@ -31,3 +31,6 @@ def verse(number: int) -> str:
 
 def verses(start: int, end: int) -> str:
     return "\n".join(verse(n) for n in range(start, end - 1, -1))
+
+def song() -> str:
+    return verses(99, 0)
