@@ -8,8 +8,8 @@ version = "0"
 
 dependencies = [
     "pytest",
-    "mypy",
     "ruff",
+    "mypy",
 ]
 
 [tool.setuptools]
@@ -24,6 +24,9 @@ python_files = "test*.py"
 strict = true
 # mypy doesn't automatically read .python-version so we need to explicitly set it here
 python_version = "3.13"
+
+[tool.pyright]
+typeCheckingMode = "strict"
 
 [tool.ruff]
 select = [
@@ -43,3 +46,4 @@ select = [
     "C901",
 ]
 line-length = 99
+
