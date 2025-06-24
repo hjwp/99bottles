@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ninetyine_bottles"
+version = "0"
+
+dependencies = [
+    "pytest",
+    "mypy",
+    "ruff",
+]
+
+[tool.setuptools]
+packages = []
+
+[tool.pytest.ini_options]
+# -r N disables the post-test summary
+addopts = ["--tb=short", "-r N"]
+python_files = "test*.py"
+
+[tool.mypy]
+strict = true
+# mypy doesn't automatically read .python-version so we need to explicitly set it here
+python_version = "3.13"
+
+[tool.ruff]
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # cyclomatic (mccabe) complexity 
+    "C901",
+]
+line-length = 99
