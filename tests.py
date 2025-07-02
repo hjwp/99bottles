@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from ninetyninebottles import verse, verses, song
+from ninetyninebottles import song, verse, verses
 
 
 def test_the_first_verse() -> None:
@@ -88,5 +88,5 @@ def test_a_few_verses() -> None:
     assert verses(2, 0) == expected
 
 
-def test_song():
+def test_song() -> None:
     assert song() == Path("full-song.txt").read_text()
