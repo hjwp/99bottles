@@ -3,7 +3,7 @@ def verse(number: int) -> str:
         f"{_quantity(number).capitalize()} {_container(number)} of beer on the wall, "
         f"{_quantity(number)} {_container(number)} of beer.\n"
         f"{_action(number).capitalize()}, "
-        f"{_quantity(_next(number))} {_container(number - 1)} of beer on the wall.\n"
+        f"{_quantity(_next(number))} {_container(_next(number))} of beer on the wall.\n"
     )
 
 
