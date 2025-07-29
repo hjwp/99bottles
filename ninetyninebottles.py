@@ -3,20 +3,26 @@ def verse(number: int) -> str:
         f"{_quantity(number).capitalize()} {_container(number)} of beer on the wall, "
         f"{_quantity(number)} {_container(number)} of beer.\n"
         f"{_action(number).capitalize()}, "
-        f"{_quantity(_next(number))} {_container(_next(number))} of beer on the wall.\n"
+        f"{_quantity(_next(number))} {_container(number - 1)} of beer on the wall.\n"
     )
 
 
 def _container(number: int) -> str:
-    return "bottle" if number == 1 else "bottles"
+    if number == 1:
+        return "bottle"
+    return "bottles"
 
 
 def _pronoun(number: int) -> str:
-    return "it" if number == 1 else "one"
+    if number == 1:
+        return "it"
+    return "one"
 
 
 def _quantity(number: int) -> str:
-    return "no more" if number == 0 else str(number)
+    if number == 0:
+        return "no more"
+    return str(number)
 
 
 def _action(number: int) -> str:
@@ -26,7 +32,9 @@ def _action(number: int) -> str:
 
 
 def _next(number: int) -> int:
-    return 99 if number == 0 else number - 1
+    if number == 0:
+        return 99
+    return number - 1
 
 
 def verses(start: int, end: int) -> str:
