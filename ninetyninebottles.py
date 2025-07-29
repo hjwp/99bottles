@@ -1,19 +1,10 @@
 def verse(number: int) -> str:
-    match number:
-        case 0:
-            return (
-                f"{_quantity(number).capitalize()} {_container(number)} of beer on the wall, "
-                f"{_quantity(number)} {_container(number)} of beer.\n"
-                f"{_action(number).capitalize()}, "
-                f"{_quantity(_next(number))} {_container(number - 1)} of beer on the wall.\n"
-            )
-        case _:
-            return (
-                f"{_quantity(number).capitalize()} {_container(number)} of beer on the wall, "
-                f"{_quantity(number)} {_container(number)} of beer.\n"
-                f"{_action(number).capitalize()}, "
-                f"{_quantity(_next(number))} {_container(number - 1)} of beer on the wall.\n"
-            )
+    return (
+        f"{_quantity(number).capitalize()} {_container(number)} of beer on the wall, "
+        f"{_quantity(number)} {_container(number)} of beer.\n"
+        f"{_action(number).capitalize()}, "
+        f"{_quantity(_next(number))} {_container(_next(number))} of beer on the wall.\n"
+    )
 
 
 def _container(number: int) -> str:
@@ -30,7 +21,7 @@ def _quantity(number: int) -> str:
 
 def _action(number: int) -> str:
     if number == 0:
-        return f"go to the store and buy some more"
+        return "go to the store and buy some more"
     return f"take {_pronoun(number)} down and pass it around"
 
 
