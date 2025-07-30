@@ -3,7 +3,9 @@ from dataclasses import dataclass
 
 def verse(number: int) -> str:
     this_bottles = Bottles(number)
-    next_bottles = Bottles(this_bottles.next)
+    next_bottles = Bottles(
+        this_bottles.next_number  # TODO: this feels awkward
+    )
     return (
         f"{this_bottles.quantity.capitalize()} {this_bottles.container} of beer on the wall, "
         f"{this_bottles.quantity} {this_bottles.container} of beer.\n"
@@ -41,7 +43,7 @@ class Bottles:
         return f"take {self._pronoun} down and pass it around"
 
     @property
-    def next(self) -> int:
+    def next_number(self) -> int:
         if self.num_bottles == 0:
             return 99
         return self.num_bottles - 1
