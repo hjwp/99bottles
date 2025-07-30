@@ -3,12 +3,12 @@ from dataclasses import dataclass
 
 def verse(number: int) -> str:
     this_bottles = Bottles(number)
-    next_bottles = Bottles(this_bottles.next())
+    next_bottles = Bottles(this_bottles.next)
     return (
-        f"{this_bottles.quantity().capitalize()} {this_bottles.container()} of beer on the wall, "
-        f"{this_bottles.quantity()} {this_bottles.container()} of beer.\n"
-        f"{this_bottles.action().capitalize()}, "
-        f"{next_bottles.quantity()} {next_bottles.container()} of beer on the wall.\n"
+        f"{this_bottles.quantity.capitalize()} {this_bottles.container} of beer on the wall, "
+        f"{this_bottles.quantity} {this_bottles.container} of beer.\n"
+        f"{this_bottles.action.capitalize()}, "
+        f"{next_bottles.quantity} {next_bottles.container} of beer on the wall.\n"
     )
 
 
@@ -16,26 +16,31 @@ def verse(number: int) -> str:
 class Bottles:
     num_bottles: int
 
+    @property
     def container(self) -> str:
         if self.num_bottles == 1:
             return "bottle"
         return "bottles"
 
+    @property
     def _pronoun(self) -> str:
         if self.num_bottles == 1:
             return "it"
         return "one"
 
+    @property
     def quantity(self) -> str:
         if self.num_bottles == 0:
             return "no more"
         return str(self.num_bottles)
 
+    @property
     def action(self) -> str:
         if self.num_bottles == 0:
             return "go to the store and buy some more"
-        return f"take {self._pronoun()} down and pass it around"
+        return f"take {self._pronoun} down and pass it around"
 
+    @property
     def next(self) -> int:
         if self.num_bottles == 0:
             return 99
