@@ -2,18 +2,18 @@ from dataclasses import dataclass
 
 
 def verse(number: int) -> str:
-    bn = BottleNumber(number)
-    next_bn = BottleNumber(bn.next())
+    this_bottles = Bottles(number)
+    next_bottles = Bottles(this_bottles.next())
     return (
-        f"{bn.quantity().capitalize()} {bn.container()} of beer on the wall, "
-        f"{bn.quantity()} {bn.container()} of beer.\n"
-        f"{bn.action().capitalize()}, "
-        f"{next_bn.quantity()} {next_bn.container()} of beer on the wall.\n"
+        f"{this_bottles.quantity().capitalize()} {this_bottles.container()} of beer on the wall, "
+        f"{this_bottles.quantity()} {this_bottles.container()} of beer.\n"
+        f"{this_bottles.action().capitalize()}, "
+        f"{next_bottles.quantity()} {next_bottles.container()} of beer on the wall.\n"
     )
 
 
 @dataclass
-class BottleNumber:
+class Bottles:
     num_bottles: int
 
     def container(self) -> str:
