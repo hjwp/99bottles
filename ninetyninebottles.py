@@ -6,17 +6,17 @@ def verse(number: int) -> str:
     next_bottles = Bottles(
         this_bottles.next_number  # TODO: this feels awkward
     )
-    return (
-        f"{this_bottles.quantity.capitalize()} {this_bottles.container} of beer on the wall, "
-        f"{this_bottles.quantity} {this_bottles.container} of beer.\n"
-        f"{this_bottles.action.capitalize()}, "
-        f"{next_bottles.quantity} {next_bottles.container} of beer on the wall.\n"
-    )
+    line1 = f"{this_bottles} of beer on the wall, {this_bottles} of beer"
+    line2 = f"{this_bottles.action}, {next_bottles} of beer on the wall"
+    return f"{line1.capitalize()}.\n{line2.capitalize()}.\n"
 
 
 @dataclass
 class Bottles:
     num_bottles: int
+
+    def __str__(self) -> str:
+        return f"{self.quantity} {self.container}"
 
     @property
     def container(self) -> str:
