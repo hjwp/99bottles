@@ -4,8 +4,8 @@ from dataclasses import dataclass
 
 
 def verse(number: int) -> str:
-    this_bottles = Bottles.build(number)
-    next_bottles = Bottles.build(
+    this_bottles = _bottles_for(number)
+    next_bottles = _bottles_for(
         this_bottles.next_number  # TODO: this feels awkward
     )
     line1 = f"{this_bottles} of beer on the wall, {this_bottles} of beer"
@@ -13,19 +13,19 @@ def verse(number: int) -> str:
     return f"{line1.capitalize()}.\n{line2.capitalize()}.\n"
 
 
-@dataclass
+def _bottles_for(num_bottles: int) -> Bottles:
+    if num_bottles == 0:
+        return NoBottles()
+    if num_bottles == 1:
+        return OneBottle()
+    return Bottles(num_bottles)
+
+
+@dataclass(frozen=True)
 class Bottles:
     _num_bottles: int
     _pronoun: str = "one"
     container: str = "bottles"
-
-    @classmethod
-    def build(cls, num_bottles: int) -> Bottles:
-        if num_bottles == 0:
-            return NoBottles()
-        if num_bottles == 1:
-            return OneBottle()
-        return cls(num_bottles)
 
     def __str__(self) -> str:
         return f"{self.quantity} {self.container}"
@@ -43,7 +43,7 @@ class Bottles:
         return self._num_bottles - 1
 
 
-@dataclass
+@dataclass(frozen=True)
 class NoBottles(Bottles):
     _num_bottles: int = 0
     quantity: str = "no more"
@@ -51,7 +51,7 @@ class NoBottles(Bottles):
     next_number: int = 99
 
 
-@dataclass
+@dataclass(frozen=True)
 class OneBottle(Bottles):
     _num_bottles: int = 1
     _pronoun: str = "it"
