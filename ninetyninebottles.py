@@ -4,21 +4,10 @@ from dataclasses import dataclass
 
 
 def verse(number: int) -> str:
-    this_bottles = _bottles_for(number)
-    next_bottles = _bottles_for(
-        this_bottles.next_number  # TODO: this feels awkward
-    )
+    this_bottles = Bottles(number)
     line1 = f"{this_bottles} of beer on the wall, {this_bottles} of beer"
-    line2 = f"{this_bottles.action}, {next_bottles} of beer on the wall"
+    line2 = f"{this_bottles.action}, {this_bottles.next} of beer on the wall"
     return f"{line1.capitalize()}.\n{line2.capitalize()}.\n"
-
-
-def _bottles_for(num_bottles: int) -> Bottles:
-    if num_bottles == 0:
-        return NoBottles()
-    if num_bottles == 1:
-        return OneBottle()
-    return Bottles(num_bottles)
 
 
 @dataclass(frozen=True)
@@ -26,6 +15,16 @@ class Bottles:
     _num_bottles: int
     _pronoun: str = "one"
     container: str = "bottles"
+
+    def __new__(cls, num_bottles: int) -> Bottles:
+        match num_bottles:
+            case 0:
+                cls = NoBottles
+            case 1:
+                cls = OneBottle
+            case _:
+                cls = Bottles
+        return super().__new__(cls)
 
     def __str__(self) -> str:
         return f"{self.quantity} {self.container}"
@@ -39,8 +38,8 @@ class Bottles:
         return f"take {self._pronoun} down and pass it around"
 
     @property
-    def next_number(self) -> int:
-        return self._num_bottles - 1
+    def next(self) -> Bottles:
+        return Bottles(self._num_bottles - 1)
 
 
 @dataclass(frozen=True)
@@ -48,7 +47,10 @@ class NoBottles(Bottles):
     _num_bottles: int = 0
     quantity: str = "no more"
     action: str = "go to the store and buy some more"
-    next_number: int = 99
+
+    @property
+    def next(self) -> Bottles:
+        return Bottles(99)
 
 
 @dataclass(frozen=True)
