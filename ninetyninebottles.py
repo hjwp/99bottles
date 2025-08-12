@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 
 def verse(number: int) -> str:
-    this_bottles = Bottles(number)
+    this_bottles = Bottles.for_(number)
     line1 = f"{this_bottles} of beer on the wall, {this_bottles} of beer"
     line2 = f"{this_bottles.action}, {this_bottles.next} of beer on the wall"
     return f"{line1.capitalize()}.\n{line2.capitalize()}.\n"
@@ -16,15 +16,15 @@ class Bottles:
     _pronoun: str = "one"
     container: str = "bottles"
 
-    def __new__(cls, num_bottles: int) -> Bottles:
+    @staticmethod
+    def for_(num_bottles: int) -> Bottles:
         match num_bottles:
             case 0:
-                cls = NoBottles
+                return NoBottles()
             case 1:
-                cls = OneBottle
+                return OneBottle()
             case _:
-                cls = Bottles
-        return super().__new__(cls)
+                return Bottles(num_bottles)
 
     def __str__(self) -> str:
         return f"{self.quantity} {self.container}"
@@ -39,7 +39,7 @@ class Bottles:
 
     @property
     def next(self) -> Bottles:
-        return Bottles(self._num_bottles - 1)
+        return Bottles.for_(self._num_bottles - 1)
 
 
 @dataclass(frozen=True)
