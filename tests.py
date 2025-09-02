@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from ninetyninebottles import song, verse, verses
+from ninetyninebottles import song, bottles_verse, verses
 
 
 def test_the_first_verse() -> None:
@@ -10,7 +10,7 @@ def test_the_first_verse() -> None:
         "Take one down and pass it around, "
         "98 bottles of beer on the wall.\n"
     )
-    assert verse(99) == expected
+    assert bottles_verse(99) == expected
 
 
 def test_another_verse() -> None:
@@ -20,7 +20,7 @@ def test_another_verse() -> None:
         "Take one down and pass it around, "
         "2 bottles of beer on the wall.\n"
     )
-    assert verse(3) == expected
+    assert bottles_verse(3) == expected
 
 
 def test_verse_2() -> None:
@@ -30,7 +30,7 @@ def test_verse_2() -> None:
         "Take one down and pass it around, "
         "1 bottle of beer on the wall.\n"
     )
-    assert verse(2) == expected
+    assert bottles_verse(2) == expected
 
 
 def test_verse_1() -> None:
@@ -40,7 +40,7 @@ def test_verse_1() -> None:
         "Take it down and pass it around, "
         "no more bottles of beer on the wall.\n"
     )
-    assert verse(1) == expected
+    assert bottles_verse(1) == expected
 
 
 def test_verse_0() -> None:
@@ -50,7 +50,7 @@ def test_verse_0() -> None:
         "Go to the store and buy some more, "
         "99 bottles of beer on the wall.\n"
     )
-    assert verse(0) == expected
+    assert bottles_verse(0) == expected
 
 
 def test_a_couple_verses() -> None:
@@ -65,7 +65,7 @@ def test_a_couple_verses() -> None:
         "Take one down and pass it around, "
         "97 bottles of beer on the wall.\n"
     )
-    assert verses(99, 98) == expected
+    assert verses(bottles_verse, 99, 98) == expected
 
 
 def test_a_few_verses() -> None:
@@ -85,7 +85,7 @@ def test_a_few_verses() -> None:
         + "Go to the store and buy some more, "
         + "99 bottles of beer on the wall.\n"
     )
-    assert verses(2, 0) == expected
+    assert verses(bottles_verse, 2, 0) == expected
 
 
 def test_song() -> None:
