@@ -3,6 +3,14 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
+def song() -> str:
+    return verses(99, 0)
+
+
+def verses(start: int, end: int) -> str:
+    return "\n".join(verse(n) for n in range(start, end - 1, -1))
+
+
 def verse(number: int) -> str:
     this_bottles = Bottles.for_(number)
     line1 = f"{this_bottles} of beer on the wall, {this_bottles} of beer"
@@ -58,11 +66,3 @@ class OneBottle(Bottles):
     _num_bottles: int = 1
     _pronoun: str = "it"
     container: str = "bottle"
-
-
-def verses(start: int, end: int) -> str:
-    return "\n".join(verse(n) for n in range(start, end - 1, -1))
-
-
-def song() -> str:
-    return verses(99, 0)
